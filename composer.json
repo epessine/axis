@@ -1,0 +1,55 @@
+{
+    "name": "nunomaduro/skeleton-php",
+    "description": "A skeleton repository for my packages",
+    "keywords": ["php", "skeleton", "package"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nuno Maduro",
+            "email": "enunomaduro@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.13.1",
+        "pestphp/pest": "^2.19.2",
+        "phpstan/phpstan": "^1.10.34",
+        "rector/rector": "^0.18.3",
+        "symfony/var-dumper": "^6.3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "NunoMaduro\\SkeletonPhp\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "refacto": "rector",
+        "lint": "pint",
+        "test:refacto": "rector --dry-run",
+        "test:lint": "pint --test",
+        "test:types": "phpstan analyse --ansi",
+        "test:unit": "pest --colors=always",
+        "test": [
+            "@test:refacto",
+            "@test:lint",
+            "@test:types",
+            "@test:unit"
+        ]
+    }
+}

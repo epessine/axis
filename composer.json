@@ -1,16 +1,24 @@
 {
-    "name": "nunomaduro/skeleton-php",
-    "description": "A skeleton repository for my packages",
-    "keywords": ["php", "skeleton", "package"],
+    "name": "epessine/chartwire",
+    "description": "Generate charts with a simple API on Laravel Livewire",
+    "keywords": [
+        "php",
+        "livewire",
+        "laravel",
+        "charts"
+    ],
     "license": "MIT",
     "authors": [
         {
-            "name": "Nuno Maduro",
-            "email": "enunomaduro@gmail.com"
+            "name": "Eduardo Pessine",
+            "email": "eduardopessine@gmail.com"
         }
     ],
     "require": {
-        "php": "^8.2.0"
+        "php": "^8.2.0",
+        "illuminate/support": "^10.28",
+        "illuminate/view": "^10.28",
+        "livewire/livewire": "^3.0"
     },
     "require-dev": {
         "laravel/pint": "^1.13.1",
@@ -21,8 +29,13 @@
     },
     "autoload": {
         "psr-4": {
-            "NunoMaduro\\SkeletonPhp\\": "src/"
-        }
+            "Chartwire\\": "src/"
+        },
+        "exclude-from-classmap": [
+            "/src/Charts",
+            "/src/Datasets",
+            "/src/Livewire"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -36,6 +49,13 @@
         "preferred-install": "dist",
         "allow-plugins": {
             "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Chartwire\\ChartwireServiceProvider"
+            ]
         }
     },
     "scripts": {

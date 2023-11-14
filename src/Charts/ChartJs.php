@@ -18,6 +18,9 @@ final class ChartJs implements Htmlable, Javascriptable, Renderable
 
     private readonly ?Component $component;
 
+    /**
+     * @param  array<string, mixed>  $config
+     */
     public function __construct(
         protected array $config,
         public ?Axis $attribute,
@@ -60,6 +63,6 @@ final class ChartJs implements Htmlable, Javascriptable, Renderable
 
     public function toHtml(): string
     {
-        return app('livewire')->mount(Renderer::class, ['chart' => $this], $this->id);
+        return app('livewire')->mount(Renderer::class, ['chart' => $this], $this->id); // @phpstan-ignore-line
     }
 }

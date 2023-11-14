@@ -1,8 +1,8 @@
 <?php
 
-namespace Chartwire\Livewire;
+namespace Axis\Livewire;
 
-use Chartwire\Interfaces\Renderable;
+use Axis\Interfaces\Renderable;
 use Livewire\Component;
 
 final class Renderer extends Component
@@ -10,15 +10,15 @@ final class Renderer extends Component
     public function mount(Renderable $chart): void
     {
         $this->js(<<<JS
-        window.\$chartwire ??= {};
-        window.\$chartwire['{$this->getId()}'] = {$chart->toJavascript()};
+        window.\$axis ??= {};
+        window.\$axis['{$this->getId()}'] = {$chart->toJavascript()};
         JS);
     }
 
     public function clearScript(): void
     {
         $this->js(<<<JS
-        delete window.\$chartwire['{$this->getId()}'];
+        delete window.\$axis['{$this->getId()}'];
         JS);
     }
 
@@ -27,7 +27,7 @@ final class Renderer extends Component
         return <<<BLADE
             <div>
                 <div wire:ignore
-                    x-data="\$chartwire['{$this->getId()}']">
+                    x-data="\$axis['{$this->getId()}']">
                     <canvas x-ref="canvas"></canvas>
                 </div>
             </div>

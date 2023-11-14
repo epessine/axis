@@ -1,11 +1,13 @@
 {
-    "name": "epessine/chartwire",
-    "description": "Generate charts with a simple API on Laravel Livewire",
+    "name": "epessine/axis",
+    "description": "Draw charts with a simple API on Laravel",
     "keywords": [
         "php",
         "livewire",
         "laravel",
-        "charts"
+        "charts",
+        "chart.js",
+        "draw"
     ],
     "license": "MIT",
     "authors": [
@@ -29,11 +31,9 @@
     },
     "autoload": {
         "psr-4": {
-            "Chartwire\\": "src/"
+            "Axis\\": "src/"
         },
         "exclude-from-classmap": [
-            "/src/Charts",
-            "/src/Datasets",
             "/src/Livewire"
         ]
     },
@@ -54,7 +54,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Chartwire\\ChartwireServiceProvider"
+                "Axis\\AxisServiceProvider"
             ]
         }
     },

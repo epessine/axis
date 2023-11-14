@@ -1,12 +1,12 @@
 <?php
 
-namespace Chartwire\Charts;
+namespace Axis\Charts;
 
-use Chartwire\Attributes\Chartwire;
-use Chartwire\Interfaces\Javascriptable;
-use Chartwire\Interfaces\Renderable;
-use Chartwire\Livewire\Renderer;
-use Chartwire\Traits\RendersScript;
+use Axis\Attributes\Axis;
+use Axis\Interfaces\Javascriptable;
+use Axis\Interfaces\Renderable;
+use Axis\Livewire\Renderer;
+use Axis\Traits\RendersScript;
 use Illuminate\Contracts\Support\Htmlable;
 use Livewire\Component;
 
@@ -20,7 +20,7 @@ final class ChartJs implements Htmlable, Javascriptable, Renderable
 
     public function __construct(
         protected array $config,
-        public ?Chartwire $attribute,
+        public ?Axis $attribute,
     ) {
         $this->id = $this->attribute?->getChartId() ?? uniqid();
         $this->component = $this->attribute->getComponent();
@@ -31,7 +31,7 @@ final class ChartJs implements Htmlable, Javascriptable, Renderable
         return $this->minify(<<<JS
             {
                 init() {
-                    window.\$chartwire[{$this->js($this->id)}] = new Chart(
+                    window.\$axis[{$this->js($this->id)}] = new Chart(
                         this.\$refs.canvas,
                         {$this->js($this->config)}
                     );
@@ -44,9 +44,9 @@ final class ChartJs implements Htmlable, Javascriptable, Renderable
     public function update(): void
     {
         $this->component->js(<<<JS
-            if (window.\$chartwire) {
-                \$chartwire['{$this->id}'].data = {$this->js($this->config)}.data;
-                \$chartwire['{$this->id}'].update();
+            if (window.\$axis) {
+                \$axis['{$this->id}'].data = {$this->js($this->config)}.data;
+                \$axis['{$this->id}'].update();
             }
         JS);
     }
@@ -54,7 +54,7 @@ final class ChartJs implements Htmlable, Javascriptable, Renderable
     public function run(string $expression): void
     {
         $this->component->js(str($expression)
-            ->replace('$chart', "\$chartwire['{$this->id}']")
+            ->replace('$chart', "\$axis['{$this->id}']")
             ->toString());
     }
 

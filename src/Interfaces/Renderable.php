@@ -1,6 +1,6 @@
 <?php
 
-namespace Chartwire\Interfaces;
+namespace Axis\Interfaces;
 
 interface Renderable
 {

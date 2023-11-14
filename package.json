@@ -1,15 +1,15 @@
 {
-  "name": "chartwire",
-  "version": "1.0.0",
-  "description": "Generate charts with a simple API on Laravel Livewire",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs",
-    "test": "tests"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "epessine",
-  "license": "ISC"
+    "name": "axis",
+    "version": "1.0.0",
+    "description": "Draw charts with a simple API on Laravel",
+    "main": "index.js",
+    "directories": {
+        "doc": "docs",
+        "test": "tests"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "epessine",
+    "license": "ISC"
 }

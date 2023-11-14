@@ -1,6 +1,6 @@
 <?php
 
-namespace Chartwire\Traits;
+namespace Axis\Traits;
 
 use Illuminate\Support\Js;
 

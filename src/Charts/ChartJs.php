@@ -63,6 +63,6 @@ final class ChartJs implements Htmlable, Javascriptable, Renderable
 
     public function toHtml(): string
     {
-        return app('livewire')->mount(Renderer::class, ['chart' => $this], $this->id); // @phpstan-ignore-line
+        return app('livewire')->mount(Renderer::class, ['chart' => $this], $this->id);
     }
 }

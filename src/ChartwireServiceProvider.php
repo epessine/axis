@@ -2,16 +2,14 @@
 
 namespace Chartwire;
 
-use Chartwire\Livewire\Chart;
+use Chartwire\Livewire\Renderer;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 
-class ChartwireServiceProvider extends ServiceProvider
+final class ChartwireServiceProvider extends ServiceProvider
 {
-    private string $packageName = 'chartwire';
-
     public function boot(): void
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', $this->packageName);
+        Livewire::component('chartwire::renderer', Renderer::class);
     }
 }

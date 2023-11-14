@@ -2,21 +2,18 @@
 
 namespace Chartwire;
 
-use Chartwire\Charts\Bar;
-use Chartwire\Charts\Base;
+use Chartwire\Attributes\Chartwire;
+use Chartwire\Charts\ChartJs;
 
-/**
- * @mixin \Chartwire\Charts\Base
- */
-class Chart
+final class Chart
 {
-    public static function bar(): Bar
+    public static function chartjs(array $config): ChartJs
     {
-        return new Bar;
-    }
+        /** @var ?Chartwire $attribute */
+        $attribute = collect(debug_backtrace())->firstWhere(
+            fn (array $trace): bool => data_get($trace, 'object') instanceof Chartwire
+        )['object'];
 
-    public static function __callStatic($name, $arguments)
-    {
-        return (new Base)->{$name}($arguments);
+        return new ChartJs($config, $attribute);
     }
 }

@@ -24,6 +24,7 @@
     },
     "require-dev": {
         "laravel/pint": "^1.13",
+        "orchestra/testbench": "^8.15",
         "pestphp/pest": "^2.19.2",
         "phpstan/phpstan": "^1.10.34",
         "rector/rector": "^0.18.3",
@@ -39,7 +40,10 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
         }
     },
     "minimum-stability": "stable",
@@ -70,6 +74,18 @@
             "@test:lint",
             "@test:types",
             "@test:unit"
+        ],
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve"
         ]
     }
 }

@@ -9,6 +9,6 @@ final class Axis extends Computed
 {
     public function getChartId(): string
     {
-        return $this->getComponent()->getId() . '::' . $this->getName();
+        return $this->getComponent()->getId().'::'.$this->getName();
     }
 }

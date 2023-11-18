@@ -2,14 +2,29 @@
 
 namespace Axis\Traits;
 
-use Illuminate\Support\Js;
+use Axis\Support\Script;
 use Illuminate\Support\Stringable;
 
 trait ParsesJs
 {
-    protected function js(mixed $data): string
+    /**
+     * @param  iterable<(int|string), mixed>  $data
+     */
+    protected function js(iterable $data): string
     {
-        return Js::from($data)->toHtml();
+        $encoded = json_encode($data, JSON_THROW_ON_ERROR);
+
+        /** @var array<Script> */
+        $scripts = collect($data)
+            ->dot()
+            ->filter(fn (mixed $item): bool => $item instanceof Script)
+            ->all();
+
+        foreach ($scripts as $script) {
+            $encoded = $script->replace($encoded);
+        }
+
+        return $encoded;
     }
 
     protected function minify(string $expression): string

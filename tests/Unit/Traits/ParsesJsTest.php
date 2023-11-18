@@ -46,7 +46,9 @@ test('it should parse data into minified js', function () {
     ];
 
     expect($this->class->js($data))
-        ->toBe("JSON.parse('{\u0022foo\u0022:\u0022bar\u0022,\u0022bar\u0022:\u0022foo\u0022,\u0022foobar\u0022:\u0022barfoo\u0022}')");
+        ->toBe(<<<'JS'
+        {"foo":"bar","bar":"foo","foobar":"barfoo"}
+        JS);
 });
 
 test('it should replace $chart with proper object property', function () {

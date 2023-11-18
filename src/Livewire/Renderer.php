@@ -28,7 +28,7 @@ final class Renderer extends Component
             <div>
                 <div wire:ignore
                     x-data="\$axis['{$this->getId()}']">
-                    <canvas x-ref="canvas"></canvas>
+                    <canvas x-ref="container"></canvas>
                 </div>
             </div>
         BLADE;

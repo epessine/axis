@@ -28,6 +28,11 @@ trait AsAxisChart
 
     abstract protected function updateScript(): string;
 
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
     public function run(string $expression): void
     {
         $this->component->js($this->minify($expression));

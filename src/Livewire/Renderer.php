@@ -7,8 +7,12 @@ use Livewire\Component;
 
 final class Renderer extends Component
 {
+    public string $chartId;
+
     public function mount(Renderable $chart): void
     {
+        $this->chartId = $chart->getId();
+
         $this->js(<<<JS
         window.\$axis ??= {};
         window.\$axis['{$this->getId()}'] = {$chart->toJavascript()};
@@ -27,7 +31,8 @@ final class Renderer extends Component
         return <<<BLADE
             <div>
                 <div wire:ignore
-                    x-data="\$axis['{$this->getId()}']">
+                    x-data="\$axis['{$this->getId()}']"
+                    axis-id="{$this->chartId}">
                     <canvas x-ref="container"></canvas>
                 </div>
             </div>

@@ -10,6 +10,8 @@ beforeEach(function () {
             minify as traitMinify;
         }
 
+        public string $id = 'id';
+
         public function js(mixed $data): string
         {
             return $this->traitJs($data);
@@ -45,4 +47,18 @@ test('it should parse data into minified js', function () {
 
     expect($this->class->js($data))
         ->toBe("JSON.parse('{\u0022foo\u0022:\u0022bar\u0022,\u0022bar\u0022:\u0022foo\u0022,\u0022foobar\u0022:\u0022barfoo\u0022}')");
+});
+
+test('it should replace $chart with proper object property', function () {
+    $string = '$chart.destroy()';
+
+    expect($this->class->minify($string))
+        ->toBe('$axis[\'id\'].destroy()');
+});
+
+test('it should replace $container with proper alpine property', function () {
+    $string = 'const container = $container';
+
+    expect($this->class->minify($string))
+        ->toBe('const container = this.$refs.container');
 });

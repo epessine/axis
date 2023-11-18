@@ -15,15 +15,17 @@ final class ChartJs implements Htmlable, Javascriptable, Renderable, Serializabl
     protected function bootScript(): string
     {
         return <<<JS
-            new Chart(\$container, {$this->js($this->config)});
+            () => new Chart(\$container, {$this->js($this->config)});
         JS;
     }
 
     protected function updateScript(): string
     {
         return <<<JS
-            \$chart.data = {$this->js($this->config)}.data;
-            \$chart.update();
+            () => {
+                \$chart.data = {$this->js($this->config)}.data;
+                \$chart.update();
+            }
         JS;
     }
 }

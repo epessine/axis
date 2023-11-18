@@ -54,7 +54,8 @@ trait AsAxisChart
         return $this->minify(<<<JS
             {
                 init() {
-                    window.\$chart = {$this->bootScript()};
+                    const boot = {$this->bootScript()};
+                    window.\$chart = boot();
                     this.\$wire.clearScript();
                 }
             }
@@ -67,7 +68,8 @@ trait AsAxisChart
 
         $this->component?->js($this->minify(<<<JS
             if (window.\$axis) {
-                {$this->updateScript()}
+                const update = {$this->updateScript()};
+                update();
             }
         JS));
     }

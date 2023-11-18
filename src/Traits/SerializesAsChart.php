@@ -13,6 +13,9 @@ trait SerializesAsChart
 
     public function unserialize(string $data): void
     {
-        $this->__construct(unserialize($data), AxisHelper::current());
+        /** @var array<string, mixed> $config */
+        $config = unserialize($data);
+
+        $this->__construct($config, AxisHelper::current());
     }
 }

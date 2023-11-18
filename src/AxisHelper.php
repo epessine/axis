@@ -8,8 +8,11 @@ final class AxisHelper
 {
     public static function current(): ?Axis
     {
-        return data_get(collect(debug_backtrace())->first(
+        /** @var ?Axis $attribute */
+        $attribute = data_get(collect(debug_backtrace())->first(
             fn (array $trace): bool => data_get($trace, 'object') instanceof Axis
         ), 'object');
+
+        return $attribute;
     }
 }

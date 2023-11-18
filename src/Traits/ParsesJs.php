@@ -3,7 +3,9 @@
 namespace Axis\Traits;
 
 use Axis\Support\Script;
+use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
+use InvalidArgumentException;
 
 trait ParsesJs
 {
@@ -29,7 +31,13 @@ trait ParsesJs
 
     protected function minify(string $expression): string
     {
-        return str(preg_replace('~(\v|\t|\s{2,})~m', '', $expression))
+        $minified = preg_replace('~(\v|\t|\s{2,})~m', '', $expression);
+
+        if ($minified === null) {
+            throw new InvalidArgumentException("Invalid expression given: $expression");
+        }
+
+        return Str::of($minified)
             ->when(
                 property_exists($this, 'id'),
                 fn (Stringable $str): Stringable => $str->replace('$chart', "\$axis['{$this->id}']"),

@@ -35,11 +35,15 @@ trait AsAxisChart
 
     public function run(string $expression): void
     {
-        $this->component->js($this->minify($expression));
+        $this->component?->js($this->minify($expression));
     }
 
     protected function syncState(): void
     {
+        if ($this->component === null || $this->attribute === null) {
+            return;
+        }
+
         unset($this->component->{$this->attribute->getName()});
 
         $this->config = $this->component->{$this->attribute->getName()}->config;
@@ -61,7 +65,7 @@ trait AsAxisChart
     {
         $this->syncState();
 
-        $this->component->js($this->minify(<<<JS
+        $this->component?->js($this->minify(<<<JS
             if (window.\$axis) {
                 {$this->updateScript()}
             }

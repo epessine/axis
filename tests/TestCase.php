@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use Illuminate\Contracts\Config\Repository;
+use Illuminate\Support\Facades\Artisan;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -11,8 +11,6 @@ abstract class TestCase extends BaseTestCase
 
     protected function defineEnvironment($app)
     {
-        tap($app['config'], function (Repository $config) {
-            $config->set('app.key', str()->random(16));
-        });
+        tap($app['config'], fn () => Artisan::call('key:generate'));
     }
 }

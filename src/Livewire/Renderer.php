@@ -9,9 +9,12 @@ final class Renderer extends Component
 {
     public string $chartId;
 
+    public string $containerElement = 'div';
+
     public function mount(Renderable $chart): void
     {
         $this->chartId = $chart->getId();
+        $this->containerElement = $chart->getContainerElement();
 
         $this->js(<<<JS
         window.\$axis ??= {};
@@ -30,10 +33,12 @@ final class Renderer extends Component
     {
         return <<<BLADE
             <div>
-                <div wire:ignore
-                    x-data="\$axis['{$this->getId()}']"
+                <div wire:ignore x-data="\$axis['{$this->getId()}']"
                     axis-id="{$this->chartId}">
-                    <canvas x-ref="container"></canvas>
+                    <{$this->containerElement} wire:ignore
+                        x-ref="container"
+                        wire:key="{$this->chartId}-container"
+                    ></{$this->containerElement}>
                 </div>
             </div>
         BLADE;

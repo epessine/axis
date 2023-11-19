@@ -9,6 +9,11 @@ use function Pest\Livewire\livewire;
 test('it should render properly', function () {
     $chart = new class implements Renderable
     {
+        public function getContainerElement(): string
+        {
+            return 'canvas';
+        }
+
         public function getId(): string
         {
             return 'chart';
@@ -29,5 +34,6 @@ test('it should render properly', function () {
         ->assertSeeHtml('axis-id="chart"')
         ->assertSeeHtml('wire:ignore')
         ->assertSeeHtml('x-ref="container"')
+        ->assertSeeHtml('<canvas')
         ->tap(fn (Testable $testable) => $testable->assertSeeHtml("x-data=\"\$axis['{$testable->id()}']\""));
 });

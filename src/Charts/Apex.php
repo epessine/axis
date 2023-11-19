@@ -8,29 +8,30 @@ use Axis\Traits\AsAxisChart;
 use Illuminate\Contracts\Support\Htmlable;
 use Serializable;
 
-final class ChartJs implements Htmlable, Javascriptable, Renderable, Serializable
+final class Apex implements Htmlable, Javascriptable, Renderable, Serializable
 {
     use AsAxisChart;
 
     public function getContainerElement(): string
     {
-        return 'canvas';
+        return 'div';
     }
 
     protected function bootScript(): string
     {
         return <<<JS
-            () => new Chart(\$container, {$this->js($this->config)});
+            () => {
+                const chart = new ApexCharts(\$container, {$this->js($this->config)});
+                chart.render();
+                return chart;
+            }
         JS;
     }
 
     protected function updateScript(): string
     {
         return <<<JS
-            () => {
-                \$chart.data = {$this->js($this->config)}.data;
-                \$chart.update();
-            }
+            () => \$chart.updateOptions({$this->js($this->config)});
         JS;
     }
 }

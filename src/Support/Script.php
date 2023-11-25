@@ -11,6 +11,11 @@ final class Script implements JsonSerializable
     {
     }
 
+    public function getExpression(): string
+    {
+        return $this->expression;
+    }
+
     public static function from(string $expression): static
     {
         return new self($expression);

@@ -1,0 +1,98 @@
+# Configuration
+baseURL: "https://epessine.github.io/axis/"
+title: "Axis"
+
+enableRobotsTXT: true
+enableGitInfo: true
+
+outputs:
+  home: [HTML]
+  page: [HTML]
+  section: [HTML, RSS]
+
+defaultContentLanguage: en
+languages:
+  en:
+    languageName: English
+    weight: 1
+    title: Axis
+
+module:
+  imports:
+    path: github.com/imfing/hextra
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+
+enableInlineShortcodes: true
+
+menu:
+  main:
+    - identifier: documentation
+      name: Docs
+      pageRef: /docs
+      weight: 1
+    - name: Search
+      weight: 5
+      params:
+        type: search
+    - name: GitHub
+      weight: 6
+      url: "https://github.com/epessine/axis"
+      params:
+        icon: github
+
+  sidebar:
+    - identifier: more
+      name: More
+      params:
+        type: separator
+      weight: 1
+    - identifier: about
+      name: "About"
+      pageRef: "/about"
+      weight: 2
+
+params:
+  description: Draw charts with a ultra-simple API on Laravel!
+
+  navbar:
+    displayTitle: true
+    displayLogo: true
+    logo:
+      path: images/axis-logo-sm.png
+    width: wide
+
+  page:
+    width: normal
+
+  theme:
+    default: system
+    displayToggle: true
+
+  footer:
+    enable: true
+    displayCopyright: false
+    displayPoweredBy: true
+    width: normal
+
+  displayUpdatedDate: true
+  dateFormat: "January 2, 2006"
+
+  search:
+    enable: true
+    type: flexsearch
+
+    flexsearch:
+      index: content
+
+  editURL:
+    enable: true
+    base: "https://github.com/epessine/axis/docs/page/content"
+
+  comments:
+    enable: false

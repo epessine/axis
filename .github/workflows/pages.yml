@@ -18,6 +18,7 @@ concurrency:
 defaults:
   run:
     shell: bash
+    working-directory: ./docs/page
 
 jobs:
   build:

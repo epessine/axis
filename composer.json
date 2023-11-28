@@ -9,6 +9,7 @@
         "chart.js",
         "draw"
     ],
+    "homepage": "https://epessine.github.io/axis/",
     "license": "MIT",
     "authors": [
         {
@@ -34,10 +35,7 @@
     "autoload": {
         "psr-4": {
             "Axis\\": "src/"
-        },
-        "exclude-from-classmap": [
-            "/src/Livewire"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {

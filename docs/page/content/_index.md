@@ -1,5 +1,5 @@
 ---
-title: Hextra Theme
+title: Axis for Laravel
 layout: hextra-home
 ---
 

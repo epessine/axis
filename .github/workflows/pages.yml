@@ -3,6 +3,7 @@ name: Deploy Docs site
 on:
   push:
     branches: ["master"]
+    paths: ["docs/**"]
 
   workflow_dispatch:
 

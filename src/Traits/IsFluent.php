@@ -14,5 +14,5 @@ trait IsFluent
 
     abstract public function options(iterable $options, bool $overwrite = false): static;
 
-    abstract public function series(iterable $data, ?Type $type = null, iterable $options = []): static;
+    abstract public function series(iterable $data, Type $type = null, iterable $options = []): static;
 }

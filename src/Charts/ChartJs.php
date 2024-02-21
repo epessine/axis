@@ -93,7 +93,7 @@ final class ChartJs implements Htmlable, Javascriptable, Renderable, Serializabl
      * @param  iterable<int|iterable<int>>  $data
      * @param  iterable<mixed, mixed>  $options
      */
-    public function series(iterable $data, ?Type $type = null, iterable $options = []): static
+    public function series(iterable $data, Type $type = null, iterable $options = []): static
     {
         $series = ['data' => [...$data], ...$options];
 

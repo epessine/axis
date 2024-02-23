@@ -38,7 +38,10 @@ final class ChartJs implements Htmlable, Javascriptable, Renderable, Serializabl
 
     public function title(string $title): static
     {
-        data_set($this->config, 'options.plugins.title', $title);
+        data_set($this->config, 'options.plugins.title', [
+            'text' => $title,
+            'display' => true,
+        ]);
 
         return $this;
     }

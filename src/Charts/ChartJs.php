@@ -93,19 +93,9 @@ final class ChartJs implements Htmlable, Javascriptable, Renderable, Serializabl
      * @param  iterable<int|iterable<int>>  $data
      * @param  iterable<mixed, mixed>  $options
      */
-    public function series(iterable $data, ?Type $type = null, iterable $options = []): static
+    public function series(string $name, iterable $data, iterable $options = []): static
     {
-        $series = ['data' => [...$data], ...$options];
-
-        if ($type instanceof Type) {
-            $series['type'] = match ($type) {
-                Type::Bar => 'bar',
-                Type::Column => 'bar',
-                Type::Line => 'line',
-                Type::Pie => 'pie',
-                Type::Radar => 'radar',
-            };
-        }
+        $series = ['data' => [...$data], 'label' => $name, ...$options];
 
         /** @var array<array<string, mixed>> $currentSeries */
         $currentSeries = $this->config['data.datasets'] ?? [];

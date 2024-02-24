@@ -18,16 +18,13 @@ class ExampleController extends Controller
 {
     public function __invoke(): View
     {
-        $chart = Chart::highcharts([
-            'chart' => ['type' => 'bar'],
-            'title' => ['text' => 'Fruit Consumption'],
-            'xAxis' => ['categories' => ['Apples', 'Bananas', 'Oranges']],
-            'yAxis' => ['title' => ['text' => 'Fruit eaten']],
-            'series' => [
-                ['name' => 'Jane', 'data' => [1, 0, 4]],
-                ['name' => 'John', 'data' => [5, 7, 3]],
-            ],
-        ]);
+        $chart = Chart::highcharts()
+            ->bar()
+            ->title('Fruit Consumption')
+            ->labels(['Apples', 'Bananas', 'Oranges'])
+            ->series('Jane', [1, 0, 4])
+            ->series('John', [5, 7, 3])
+            ->options(['yAxis' => ['title' => ['text' => 'Fruit eaten']]]);
 
         return view('example.chart', compact('chart'));
     }

@@ -1,5 +1,5 @@
 ---
-title: 'Interacting with Charts'
+title: "Interacting with Charts"
 weight: 3
 prev: /docs/your-first-chart
 ---
@@ -11,9 +11,11 @@ Every chart rendered by Axis is stored on the global Javascript object `$axis` o
 ```php
 use Axis\Chart;
 
-$chart = Chart::chartjs([
-    //chart config...
-]);
+$chart = Chart::chartjs()
+    ->line()
+    ->title('Example')
+    ->labels(['Mon', 'Tue', 'Wed', 'Thu'])
+    ->series('Interactions', [1, 3, 4, 6]);
 
 $chartId = $chart->getId(); // $chartId stores the chart instance id
 ```
@@ -23,9 +25,7 @@ You can use this identifier to interact with the chart instance via Javascript:
 ```html
 <section>
     <h1>Chart Interaction Example</h1>
-    <div>
-        {{ $chart }}
-    </div>
+    <div>{{ $chart }}</div>
     <button type="button" onclick="$axis[@js($chartId)].destroy()">
         DON'T PRESS
     </button>

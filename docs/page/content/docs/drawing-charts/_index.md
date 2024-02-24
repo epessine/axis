@@ -18,15 +18,10 @@ class ExampleController extends Controller
 {
     public function __invoke(): View
     {
-        $chart = Chart::chartjs([
-            'type' => 'bar',
-            'data' => [
-                'labels' => ['A', 'B', 'C'],
-                'datasets' => [
-                    ['label' => 'First Dataset', 'data' => [10, 20, 30]],
-                ],
-            ],
-        ]);
+        $chart = Chart::chartjs()
+            ->bar()
+            ->labels(['A', 'B', 'C'])
+            ->series('First Series', [10, 20, 30]);
 
         return view('example.chart', compact('chart'));
     }
@@ -58,22 +53,41 @@ class ExampleController extends Controller
 {
     public function __invoke(): View
     {
+        $chart = Chart::chartjs()
+            ->bar()
+            ->labels(['A', 'B', 'C'])
+            ->series('First Series', [10, 20, 30], [
+                'backgroundColor' => Script::from(<<<'JS'
+                    function(ctx) {
+                        const index = ctx.dataIndex;
+                        const value = ctx.dataset.data[index];
+                        return value < 10 ? 'red' :  'green';
+                    }
+                JS),
+            ]);
+
+        return view('example.chart', compact('chart'));
+    }
+}
+```
+
+### Using raw data
+
+You can also create charts using the same JS API from your chosen library. This is useful if you want to create charts with high levels of customization. Here's how you can do it to create the same chart as the first one on this section:
+
+```php
+use Axis\Chart;
+
+class ExampleController extends Controller
+{
+    public function __invoke(): View
+    {
         $chart = Chart::chartjs([
             'type' => 'bar',
             'data' => [
                 'labels' => ['A', 'B', 'C'],
                 'datasets' => [
-                    [
-                        'label' => 'First Dataset',
-                        'data' => [10, 20, 30],
-                        'backgroundColor' => Script::from(<<<'JS'
-                            function(ctx) {
-                                const index = ctx.dataIndex;
-                                const value = ctx.dataset.data[index];
-                                return value < 10 ? 'red' :  'green';
-                            }
-                        JS),
-                    ],
+                    ['label' => 'First Dataset', 'data' => [10, 20, 30]],
                 ],
             ],
         ]);

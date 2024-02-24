@@ -18,9 +18,11 @@ class Example extends Component
     #[Axis]
     public function chart(): ChartJs
     {
-        return Chart::chartjs([
-            // chart config...
-        ]);
+        return Chart::chartjs()
+            ->radar()
+            ->title('Livewire Chart')
+            ->labels(['Mon', 'Tue', 'Wed', 'Thu'])
+            ->series('Clicks', [4, 12, 43, 27]);
     }
 }
 ```
@@ -59,12 +61,11 @@ class Example extends Component
     #[Axis]
     public function chart(): ChartJs
     {
-        return Chart::chartjs([
-            'data' => [
-                'labels' => $this->labels,
-            ],
-            // chart config...
-        ]);
+        return Chart::chartjs()
+            ->pie()
+            ->title('Livewire Chart')
+            ->labels($this->labels)
+            ->series('Quantity', [65, 42, 31]);
     }
 
     public function changeLabels(): void
@@ -92,9 +93,11 @@ class Example extends Component
     #[Axis]
     public function chart(): ChartJs
     {
-        return Chart::chartjs([
-            // chart config...
-        ]);
+        return Chart::chartjs()
+            ->column()
+            ->title('Livewire Chart')
+            ->labels(['Mon', 'Tue', 'Wed', 'Thu'])
+            ->series('Clicks', [22, 31, 9, 58]);
     }
 
     public function destroyChart(): void

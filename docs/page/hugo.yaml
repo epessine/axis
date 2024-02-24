@@ -92,7 +92,7 @@ params:
 
   editURL:
     enable: true
-    base: "https://github.com/epessine/axis/docs/page/content"
+    base: "https://github.com/epessine/axis/blob/master/docs/page/content"
 
   comments:
     enable: false

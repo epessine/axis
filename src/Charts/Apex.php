@@ -6,12 +6,13 @@ use Axis\Enums\Type;
 use Axis\Interfaces\Javascriptable;
 use Axis\Interfaces\Renderable;
 use Axis\Traits\AsAxisChart;
+use Axis\Traits\IsFluent;
 use Illuminate\Contracts\Support\Htmlable;
 use Serializable;
 
 final class Apex implements Htmlable, Javascriptable, Renderable, Serializable
 {
-    use AsAxisChart;
+    use AsAxisChart, IsFluent;
 
     public function getContainerElement(): string
     {

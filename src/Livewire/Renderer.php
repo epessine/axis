@@ -32,10 +32,12 @@ final class Renderer extends Component
     public function render(): string
     {
         return <<<BLADE
-            <div>
+            <div style="width: 100%; height: 100%;">
                 <div wire:ignore x-data="\$axis['{$this->getId()}']"
+                    style="width: 100%; height: 100%;"
                     axis-id="{$this->chartId}">
                     <{$this->containerElement} wire:ignore
+                        style="width: 100%; height: 100%;"
                         x-ref="container"
                         wire:key="{$this->chartId}-container"
                     ></{$this->containerElement}>

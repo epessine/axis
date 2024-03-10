@@ -101,7 +101,7 @@ final class ChartJs implements Htmlable, Javascriptable, Renderable, Serializabl
         $series = ['data' => [...$data], 'label' => $name, ...$options];
 
         /** @var array<array<string, mixed>> $currentSeries */
-        $currentSeries = $this->config['data.datasets'] ?? [];
+        $currentSeries = data_get($this->config, 'data.datasets', []);
 
         $currentSeries[] = $series;
 

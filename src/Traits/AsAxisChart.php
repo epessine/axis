@@ -7,7 +7,7 @@ use Livewire\Component;
 
 trait AsAxisChart
 {
-    use ParsesJs, RendersAsChart, SerializesAsChart;
+    use IsFluent, ParsesJs, RendersAsChart, SerializesAsChart;
 
     protected readonly string $id;
 

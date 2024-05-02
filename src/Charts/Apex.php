@@ -13,6 +13,11 @@ final class Apex implements Htmlable, Javascriptable, Renderable, Serializable
 {
     use AsAxisChart;
 
+    private function getPackageName(): string
+    {
+        return 'apexcharts';
+    }
+
     public function getContainerElement(): string
     {
         return 'div';
@@ -105,5 +110,11 @@ final class Apex implements Htmlable, Javascriptable, Renderable, Serializable
         data_set($this->config, 'series', $currentSeries);
 
         return $this;
+    }
+
+    private function prepareForScreenshot(): void
+    {
+        data_set($this->config, 'chart.animations.enabled', false);
+        data_set($this->config, 'chart.height', '100%');
     }
 }

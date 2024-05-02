@@ -13,6 +13,11 @@ final class Highcharts implements Htmlable, Javascriptable, Renderable, Serializ
 {
     use AsAxisChart;
 
+    private function getPackageName(): string
+    {
+        return 'highcharts';
+    }
+
     public function getContainerElement(): string
     {
         return 'div';
@@ -103,5 +108,11 @@ final class Highcharts implements Htmlable, Javascriptable, Renderable, Serializ
         data_set($this->config, 'series', $currentSeries);
 
         return $this;
+    }
+
+    private function prepareForScreenshot(): void
+    {
+        data_set($this->config, 'chart.animation', false);
+        data_set($this->config, 'plotOptions.series.animation', false);
     }
 }

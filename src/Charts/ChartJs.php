@@ -13,6 +13,11 @@ final class ChartJs implements Htmlable, Javascriptable, Renderable, Serializabl
 {
     use AsAxisChart;
 
+    private function getPackageName(): string
+    {
+        return 'chart.js';
+    }
+
     public function getContainerElement(): string
     {
         return 'canvas';
@@ -107,5 +112,10 @@ final class ChartJs implements Htmlable, Javascriptable, Renderable, Serializabl
         data_set($this->config, 'data.datasets', $currentSeries);
 
         return $this;
+    }
+
+    private function prepareForScreenshot(): void
+    {
+        data_set($this->config, 'options.animations', false);
     }
 }

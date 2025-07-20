@@ -5,11 +5,9 @@ namespace Axis\Support;
 use Illuminate\Support\Str;
 use JsonSerializable;
 
-final class Script implements JsonSerializable
+final readonly class Script implements JsonSerializable
 {
-    private function __construct(protected string $expression)
-    {
-    }
+    private function __construct(private string $expression) {}
 
     public function getExpression(): string
     {

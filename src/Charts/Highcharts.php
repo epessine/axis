@@ -68,6 +68,7 @@ final class Highcharts implements Htmlable, Javascriptable, Renderable, Serializ
             Type::Bar => 'bar',
             Type::Column => 'column',
             Type::Pie => 'pie',
+            default => throw new \InvalidArgumentException("Highcharts does not support chart type: {$type->name}"),
         };
 
         data_set($this->config, 'chart.type', $type);

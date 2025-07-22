@@ -70,6 +70,11 @@ final class Apex implements Htmlable, Javascriptable, Renderable, Serializable
             Type::Line => 'line',
             Type::Pie => 'pie',
             Type::Radar => 'radar',
+            Type::Area => 'area',
+            Type::Donut => 'donut',
+            Type::BoxPlot => 'boxPlot',
+            Type::RangeBar => 'rangeBar',
+            Type::Candlestick => 'candlestick',
         };
 
         data_set($this->config, 'chart.type', $type);

@@ -40,4 +40,29 @@ trait IsFluent
     {
         return $this->type(Type::Column);
     }
+
+    public function area(): static
+    {
+        return $this->type(Type::Area);
+    }
+
+    public function donut(): static
+    {
+        return $this->type(Type::Donut);
+    }
+
+    public function boxPlot(): static
+    {
+        return $this->type(Type::BoxPlot);
+    }
+
+    public function rangeBar(): static
+    {
+        return $this->type(Type::RangeBar);
+    }
+
+    public function candlestick(): static
+    {
+        return $this->type(Type::Candlestick);
+    }
 }

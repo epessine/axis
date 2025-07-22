@@ -9,4 +9,9 @@ enum Type
     case Radar;
     case Line;
     case Column;
+    case Area;
+    case Donut;
+    case BoxPlot;
+    case RangeBar;
+    case Candlestick;
 }

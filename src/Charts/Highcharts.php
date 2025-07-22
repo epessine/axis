@@ -88,7 +88,9 @@ final class Highcharts implements Htmlable, Javascriptable, Renderable, Serializ
             ? [...$options]
             : array_replace_recursive($currentOptions, [...$options]);
 
-        $this->config = ['series' => $this->config['series'], ...$options];
+        // Safely merge 'series' if it exists
+        $series = $this->config['series'] ?? null;
+        $this->config = $series !== null ? ['series' => $series, ...$options] : [...$options];
 
         return $this;
     }

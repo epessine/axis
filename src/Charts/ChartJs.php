@@ -72,6 +72,9 @@ final class ChartJs implements Htmlable, Javascriptable, Renderable, Serializabl
             Type::Line => 'line',
             Type::Pie => 'pie',
             Type::Radar => 'radar',
+            Type::Area => 'area',
+            Type::Donut => 'donut',
+            default => throw new \InvalidArgumentException("ChartJs does not support chart type: {$type->name}"),
         };
 
         data_set($this->config, 'type', $type);

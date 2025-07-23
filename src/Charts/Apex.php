@@ -89,7 +89,9 @@ final class Apex implements Htmlable, Javascriptable, Renderable, Serializable
             ? [...$options]
             : array_replace_recursive($currentOptions, [...$options]);
 
-        $this->config = ['series' => $this->config['series'], ...$options];
+        foreach ($options as $key => $value) {
+            $this->config[$key] = $value;
+        }
 
         return $this;
     }

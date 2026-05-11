@@ -11,7 +11,7 @@ final class AxisServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        Livewire::component('axis::renderer', Renderer::class);
+        Livewire::component('axis-renderer', Renderer::class);
         Livewire::propertySynthesizer(ScriptSynth::class); // @phpstan-ignore-line
     }
 }

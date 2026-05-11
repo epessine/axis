@@ -8,10 +8,17 @@
     </p>
 </p>
 
-------
+---
+
 Read the documentation [here](https://epessine.github.io/axis/docs).
 
 Axis is a modern, ultra-simple and flexible library to draw charts on Laravel apps without leaving PHP. Forget about writing hundreds of Javascript code just to get started with charts on your project: Axis ables your team to focus on what's important.
+
+## Compatibility
+
+- Laravel: 10.x, 11.x, 12.x, 13.x
+- Livewire: 3.x, 4.x
+- PHP: 8.2, 8.3, 8.4, 8.5
 
 ## Features
 

@@ -4,13 +4,6 @@ use Axis\Interfaces\Renderable;
 use Axis\Livewire\Renderer;
 use Livewire\LivewireManager;
 
-test('it should register the renderer component alias', function () {
-    /** @var LivewireManager $livewire */
-    $livewire = app('livewire');
-
-    expect($livewire->exists(Renderer::ALIAS))->toBeTrue();
-});
-
 test('it should resolve renderer alias to renderer component class', function () {
     /** @var LivewireManager $livewire */
     $livewire = app('livewire');

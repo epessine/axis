@@ -2,6 +2,7 @@
 
 namespace Axis\Traits;
 
+use Axis\Livewire\Renderer;
 use Livewire\LivewireManager;
 
 trait RendersAsChart
@@ -11,6 +12,6 @@ trait RendersAsChart
         /** @var LivewireManager $livewire */
         $livewire = app('livewire');
 
-        return $livewire->mount('axis-renderer', ['chart' => $this], $this->id);
+        return $livewire->mount(Renderer::ALIAS, ['chart' => $this], $this->id);
     }
 }

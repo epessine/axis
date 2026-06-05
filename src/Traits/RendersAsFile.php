@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Axis\Traits;
 
 use Illuminate\Support\Facades\Process;
 use Illuminate\Support\Js;
+use Illuminate\Support\Stringable;
 
 trait RendersAsFile
 {
@@ -79,7 +82,7 @@ trait RendersAsFile
     {
         $this->prepareForScreenshot();
 
-        /** @var \Illuminate\Support\Stringable $script */
+        /** @var Stringable $script */
         $script = str($this->minify(<<<JS
             async () => {
                 this.\$refs.container = document.querySelector('#chart');
@@ -88,7 +91,7 @@ trait RendersAsFile
             }
         JS));
 
-        return $script->replace('this.$refs.container', 'window.chartContainer')->replace('"', '\'');
+        return (string) $script->replace('this.$refs.container', 'window.chartContainer')->replace('"', '\'');
     }
 
     private function getFileRenderHtml(int $width, int $height): string
@@ -125,7 +128,7 @@ trait RendersAsFile
                     const page = await browser.newPage();
                     await page.setViewport({ width: $width, height: $height, deviceScaleFactor: 2 });
                     await page.setContent(\"$pageContent\");
-                    await page.addScriptTag({ url: 'https://unpkg.com/{$this->getPackageName()}' }); 
+                    await page.addScriptTag({ url: 'https://unpkg.com/{$this->getPackageName()}' });
                     await page.evaluate($renderFunction);
                     const element = await page.\\\$('#chart');
                     const buffer = await element.screenshot($screenshotOptions);

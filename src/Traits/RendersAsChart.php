@@ -12,6 +12,6 @@ trait RendersAsChart
         /** @var LivewireManager $livewire */
         $livewire = app('livewire');
 
-        return $livewire->mount(Renderer::class, ['chart' => $this], $this->id);
+        return $livewire->mount(Renderer::ALIAS, ['chart' => $this], $this->id);
     }
 }

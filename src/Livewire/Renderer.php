@@ -7,6 +7,8 @@ use Livewire\Component;
 
 final class Renderer extends Component
 {
+    public const ALIAS = 'axis-renderer';
+
     public string $chartId;
 
     public string $containerElement = 'div';
